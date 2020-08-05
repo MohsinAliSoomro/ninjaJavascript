@@ -1,28 +1,17 @@
-//Secrets of Javascript ninja
-
-//invode as a function 
-// 4.5 
-
-//function without strict mode
-function ninja() {
-    return this;
+//initialize a function 
+function Ninja() {
+    //constructor
+    this.stulk = function () {
+        return this
+    };
 }
-console.log(ninja())
+Ninja()
+//Create two object by invoking the constructor with new,
+//the newly create object are reference of Ninja function
+var ninja1 = new Ninja();
+var ninja2 = new Ninja();
 
+//test the result
+console.log(console.assert(ninja1.stulk === ninja1,"True", "he first ninja is stulking"))
 
-//function with strict mode
-function sumurai() {
-    "use strict"
-    return this;
-}
-console.log(sumurai())
-
-
-
-//As expected, a nonstrict function has window as function context
-console.log(console.assert(ninja() === window,"the context is global object"))
-
-
-//the strict function on the other hand has undefined context
-console.log(console.assert(sumurai() === undefined,"the context is undefined"));
-
+console.log(console.assert(ninja2.stulk === ninja2,"True", "the socond ninja is stulking"))
