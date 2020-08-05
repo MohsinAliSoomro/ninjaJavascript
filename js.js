@@ -1,28 +1,15 @@
-//Secrets of Javascript ninja
-
-//invode as a function 
-// 4.5 
-
-//function without strict mode
-function ninja() {
+function WhatsMyContext(){
     return this;
 }
-console.log(ninja())
+
+console.log(console.assert(WhatsMyContext()===window,"function call on window"))
 
 
-//function with strict mode
-function sumurai() {
-    "use strict"
-    return this;
+var getMyThis=WhatsMyContext
+console.log(console.assert(getMyThis()===window,"Another function call is window"))
+
+var ninja1={
+    getMyThis:WhatsMyContext
 }
-console.log(sumurai())
 
-
-
-//As expected, a nonstrict function has window as function context
-console.log(console.assert(ninja() === window,"the context is global object"))
-
-
-//the strict function on the other hand has undefined context
-console.log(console.assert(sumurai() === undefined,"the context is undefined"));
-
+console.log(console.assert(ninja1.getMyThis()===ninja1,"Working with the ninja1"))
